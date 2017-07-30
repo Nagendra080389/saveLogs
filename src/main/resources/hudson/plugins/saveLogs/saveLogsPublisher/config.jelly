@@ -1,0 +1,23 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+    See global.jelly for a general discussion about jelly script.
+  -->
+  <f:entry title="Save to Mongo DB" field="saveToMongoDB" description="Check if we should save the logs to Database.">
+    <f:checkbox />
+  </f:entry>
+
+  <f:entry title="Mongo DB host" field="hostName" description="Host name of the Mongo DB server">
+        <f:textbox />
+  </f:entry>
+
+  <f:entry title="Mongo DB Port" field="port" description="Port Number of the MongoDB to be connected">
+    <f:textbox />
+  </f:entry>
+
+  <f:entry title="Path of Log file" field="logFilePath" description="Full folder path of the jenkins log to be read">
+      <f:textbox />
+  </f:entry>
+
+</j:jelly>
