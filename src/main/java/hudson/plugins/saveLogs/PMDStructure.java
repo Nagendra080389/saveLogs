@@ -75,25 +75,11 @@ public class PMDStructure implements Serializable{
 
         PMDStructure that = (PMDStructure) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (fileName != null ? !fileName.equals(that.fileName) : that.fileName != null) return false;
-        if (salesforceID != null ? !salesforceID.equals(that.salesforceID) : that.salesforceID != null) return false;
-        if (classname != null ? !classname.equals(that.classname) : that.classname != null) return false;
-        if (lineNumber != null ? !lineNumber.equals(that.lineNumber) : that.lineNumber != null) return false;
-        if (reviewFeedback != null ? !reviewFeedback.equals(that.reviewFeedback) : that.reviewFeedback != null)
-            return false;
-        return date != null ? date.equals(that.date) : that.date == null;
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
-        result = 31 * result + (salesforceID != null ? salesforceID.hashCode() : 0);
-        result = 31 * result + (classname != null ? classname.hashCode() : 0);
-        result = 31 * result + (lineNumber != null ? lineNumber.hashCode() : 0);
-        result = 31 * result + (reviewFeedback != null ? reviewFeedback.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 }
