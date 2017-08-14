@@ -95,12 +95,20 @@ public class SaveLogsPublisher extends Notifier {
                                         //String FILE_NAME = new ClassPathResource("pmdTextTest.log").getFile().getAbsolutePath();
                                         Map<String, List<PMDStructure>> codeReviewByClass = new HashMap<>();
                                         List<String> stringList = new ArrayList<>();
+                                        String branchName = null;
                                         FileInputStream fstream = new FileInputStream(filePath.toString());
                                         try (BufferedReader br = new BufferedReader(new InputStreamReader(fstream))) {
 
                                             String codeReview;
                                             while ((codeReview = br.readLine()) != null) {
                                                 if (!codeReview.equals("")) {
+
+                                                    if(codeReview.contains("Checking out Revision")){
+                                                        String result[] = codeReview.split("/");
+                                                        String s = result[result.length - 1];
+                                                        branchName = s.substring(0, s.length()-1);
+                                                    }
+
                                                     if (codeReview.contains(".cls")) {
                                                         stringList.add(codeReview);
                                                     }
@@ -109,7 +117,7 @@ public class SaveLogsPublisher extends Notifier {
 
                                             for (String line : stringList) {
                                                 String[] split = line.split("\\\\");
-                                                codeReviewByClass = createMapOfClassAndReview(split[6], codeReviewByClass, fileName);
+                                                codeReviewByClass = createMapOfClassAndReview(split[6], codeReviewByClass, fileName, branchName);
 
                                             }
 
@@ -157,13 +165,14 @@ public class SaveLogsPublisher extends Notifier {
             document.put("lineNumber", pmdStructure.getLineNumber());
             document.put("reviewFeedback", pmdStructure.getReviewFeedback());
             document.put("dsalesforceID", pmdStructure.getSalesforceID());
+            document.put("branchName", pmdStructure.getBranchName());
             documentList.add(document);
         }
 
         return documentList;
     }
 
-    private static Map<String, List<PMDStructure>> createMapOfClassAndReview(String line, Map<String, List<PMDStructure>> codeReviewByClass, String fileName) {
+    private static Map<String, List<PMDStructure>> createMapOfClassAndReview(String line, Map<String, List<PMDStructure>> codeReviewByClass, String fileName, String branchName) {
 
         String[] classNameAndLineNumber = line.split(":");
         Date date = new Date();
@@ -179,6 +188,7 @@ public class SaveLogsPublisher extends Notifier {
             pmdStructure1.setLineNumber(Integer.valueOf(classNameAndLineNumber[1]));
             pmdStructure1.setReviewFeedback(classNameAndLineNumber[2]);
             pmdStructure1.setDate(format);
+            pmdStructure1.setBranchName(branchName);
             pmdStructure.add(pmdStructure1);
         } else {
             List<PMDStructure> pmdStructureList = new ArrayList<>();
@@ -188,6 +198,7 @@ public class SaveLogsPublisher extends Notifier {
             pmdStructure.setLineNumber(Integer.valueOf(classNameAndLineNumber[1]));
             pmdStructure.setReviewFeedback(classNameAndLineNumber[2]);
             pmdStructure.setDate(format);
+            pmdStructure.setBranchName(branchName);
             pmdStructureList.add(pmdStructure);
             codeReviewByClass.put(classNameAndLineNumber[0], pmdStructureList);
         }

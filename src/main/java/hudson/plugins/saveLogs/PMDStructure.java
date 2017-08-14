@@ -11,6 +11,7 @@ public class PMDStructure implements Serializable{
     private Integer lineNumber;
     private String reviewFeedback;
     private String date;
+    private String branchName;
 
     public String getId() {
         return id;
@@ -66,6 +67,14 @@ public class PMDStructure implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 
     @Override
