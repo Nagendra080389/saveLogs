@@ -213,7 +213,12 @@ public class SaveLogsPublisher extends Notifier {
             document.put("lineNumber", pmdStructure.getLineNumber());
             document.put("reviewFeedback", pmdStructure.getReviewFeedback());
             document.put("dsalesforceID", pmdStructure.getSalesforceID());
-            document.put("branchName", pmdStructure.getBranchName());
+            document.put("severity", pmdStructure.getSeverity());
+            document.put("beginLine", pmdStructure.getBeginLine());
+            document.put("endLine", pmdStructure.getEndLine());
+            document.put("ruleName", pmdStructure.getRuleName());
+            document.put("ruleSet", pmdStructure.getRuleSet());
+            document.put("helpURL", pmdStructure.getHelpURL());
             documentList.add(document);
         }
 
