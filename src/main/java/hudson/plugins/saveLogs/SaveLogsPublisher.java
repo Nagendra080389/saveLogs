@@ -117,8 +117,11 @@ public class SaveLogsPublisher extends Notifier {
                                                     }
 
                                                     if (!xmlList.isEmpty()) {
-                                                        xmlList.add(codeReview);
+                                                        if(!(codeReview.contains("POST BUILD TASK : FAILURE") || codeReview.contains("END OF POST BUILD TASK"))) {
+                                                            xmlList.add(codeReview);
+                                                        }
                                                     }
+
                                                     if (codeReview.contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
                                                         xmlList.add(codeReview);
                                                     }
