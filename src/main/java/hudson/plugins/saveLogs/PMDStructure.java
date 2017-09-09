@@ -12,6 +12,14 @@ public class PMDStructure implements Serializable{
     private String reviewFeedback;
     private String date;
     private String branchName;
+    private Integer severity;
+    private String ruleName;
+    private String helpURL;
+    private String ruleSet;
+    private Integer beginLine;
+    private Integer endLine;
+
+
 
     public String getId() {
         return id;
@@ -75,6 +83,54 @@ public class PMDStructure implements Serializable{
 
     public void setBranchName(String branchName) {
         this.branchName = branchName;
+    }
+
+    public Integer getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(Integer severity) {
+        this.severity = severity;
+    }
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
+    }
+
+    public String getHelpURL() {
+        return helpURL;
+    }
+
+    public void setHelpURL(String helpURL) {
+        this.helpURL = helpURL;
+    }
+
+    public String getRuleSet() {
+        return ruleSet;
+    }
+
+    public void setRuleSet(String ruleSet) {
+        this.ruleSet = ruleSet;
+    }
+
+    public Integer getBeginLine() {
+        return beginLine;
+    }
+
+    public void setBeginLine(Integer beginLine) {
+        this.beginLine = beginLine;
+    }
+
+    public Integer getEndLine() {
+        return endLine;
+    }
+
+    public void setEndLine(Integer endLine) {
+        this.endLine = endLine;
     }
 
     @Override
