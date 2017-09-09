@@ -125,6 +125,7 @@ public class SaveLogsPublisher extends Notifier {
                                                 }
                                             }
 
+                                            if(!xmlList.isEmpty()){
                                             File tempFile = File.createTempFile(fileName, ".xml");
                                             for (String eachXmlLine : xmlList) {
                                                 FileUtils.write(tempFile, eachXmlLine + "\n", true);
@@ -167,7 +168,9 @@ public class SaveLogsPublisher extends Notifier {
                                                 }
                                             }
 
+
                                             tempFile.deleteOnExit();
+                                            }
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
