@@ -188,7 +188,9 @@ public class SaveLogsPublisher extends Notifier {
                                             for (List<PMDStructure> value : values) {
                                                 List<Document> documentList = changeToValues(value);
 
-                                                salesForceClass.insertMany(documentList);
+                                                if(!documentList.isEmpty()) {
+                                                    salesForceClass.insertMany(documentList);
+                                                }
                                             }
                                         }
                                     } catch (Exception e) {
