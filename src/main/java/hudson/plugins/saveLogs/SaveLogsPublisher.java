@@ -157,6 +157,9 @@ public class SaveLogsPublisher extends Notifier {
                                                             eElement = (Element) vNode;
                                                             String severity = eElement.getAttribute("priority");
                                                             String ahref = eElement.getAttribute("externalInfoUrl");
+                                                            if(className.endsWith(".page") && ahref.contains("${pmd.website.baseurl}")){
+                                                                ahref = ahref.replace("${pmd.website.baseurl}","https://pmd.github.io/pmd-5.8.1/pmd-visualforce");
+                                                            }
                                                             String ruleSet = eElement.getAttribute("ruleset");
                                                             String rule = eElement.getAttribute("rule");
                                                             String endline = eElement.getAttribute("endline");
