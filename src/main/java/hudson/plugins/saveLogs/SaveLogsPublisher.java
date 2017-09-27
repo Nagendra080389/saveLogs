@@ -117,7 +117,9 @@ public class SaveLogsPublisher extends Notifier {
                                                     }
 
                                                     if (!xmlList.isEmpty()) {
-                                                        if(!(codeReview.contains("POST BUILD TASK : FAILURE") || codeReview.contains("END OF POST BUILD TASK"))) {
+                                                        if(!(codeReview.contains("POST BUILD TASK : FAILURE") ||
+                                                                codeReview.contains("END OF POST BUILD TASK") ||
+                                                                codeReview.contains("Finished:"))) {
                                                             xmlList.add(codeReview);
                                                         }
                                                     }
